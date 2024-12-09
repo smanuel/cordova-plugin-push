@@ -1,5 +1,22 @@
 # Change Log
 
+## 5.0.1
+
+**Fixes:**
+
+fix(ios): revert accidental change to category "`callback`" (#328)
+fix(ios): update reset flags placement in `notificationReceived` (#329)
+fix(ios): request new permissions based on ios config changes (#326)
+fix(android): prevent permission dialog appearing when already denied (#325)
+fix(ios): exclude configure if `FIRApp` is already configured (#321)
+fix(ios): reset flags & store message after processing notification received (#319)
+fix(ios): make sure `notificationMessage` is immutable (#317)
+
+**Others:**
+
+chore(*): typings - update comments & iOS `forceShow` option (#327)
+ci: replace lock app with lock-threads workflow
+
 ## 5.0.0
 
 **Breaking:**
