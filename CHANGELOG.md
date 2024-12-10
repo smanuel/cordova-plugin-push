@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.2
+
+**Fixes:**
+
+fix(android): add missing `import androidx.core.app.ActivityCompat` (#331)
+
 ## 5.0.1
 
 **Fixes:**
