@@ -84,6 +84,21 @@ class FCMService : FirebaseMessagingService() {
 
     // TODO: Implement this method to send any registration to your app's servers.
     //sendRegistrationToServer(token);
+    handleOnNewToken(token)
+  }
+
+  private fun handleOnNewToken(token: String) {
+    try {
+      val clazz = Class.forName("com.healee.cordova.plugin.twilio.VoiceFirebaseMessagingService");
+      if (clazz != null) {
+        val method = clazz.getDeclaredMethod("processNewToken", Context::class.java, String::class.java);
+        if (method != null) {
+          method.invoke(null, this, token);
+        }
+      }
+    } catch (e: Throwable) {
+      e.printStackTrace()
+    }
   }
 
   /**
@@ -108,6 +123,27 @@ class FCMService : FirebaseMessagingService() {
     }
   }
 
+  private fun handledVoipMessage(message: RemoteMessage): Boolean {
+    var isMessageHandled = false
+
+    try {
+      val clazz = Class.forName("com.healee.cordova.plugin.twilio.VoiceFirebaseMessagingService");
+      if (clazz != null) {
+        val method = clazz.getDeclaredMethod("processMessage", Context::class.java, RemoteMessage::class.java);
+        if (method != null) {
+          val res = method.invoke(null, this, message);
+          if (res is Boolean) {
+            isMessageHandled = res as Boolean
+          }
+        }
+      }
+    } catch (e: Throwable) {
+      e.printStackTrace()
+    }
+
+    return isMessageHandled
+  }
+
   /**
    * On Message Received
    */
@@ -115,6 +151,11 @@ class FCMService : FirebaseMessagingService() {
     val from = message.from
     Log.d(TAG, "onMessageReceived (from=$from)")
 
+    val isVoipMessage = handledVoipMessage(message);
+    Log.d(TAG, "onMessageReceived isVoipMessage=$isVoipMessage")
+    if (isVoipMessage) {
+      return
+    }
     var extras = Bundle()
 
     message.notification?.let {
