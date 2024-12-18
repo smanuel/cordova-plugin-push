@@ -1,5 +1,9 @@
 # Change Log
 
+## 5.0.4
+
+- Updated the plugin version in `plugin.xml`. (It was missed in the last three patches :D)
+
 ## 5.0.3
 
 **Important Note:**
