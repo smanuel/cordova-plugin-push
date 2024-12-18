@@ -1,27 +1,38 @@
 # Change Log
 
+## 5.0.3
+
+**Important Note:**
+
+This patch release fixes the implementation of the `forceShow` option on iOS to align with Android's behavior.The original goal was to provide identical functionality, but the iOS implementation included unintended platform-specific behavior. While this might feel like a breaking change from version 5.0.0 (2024/11/21), it is classified as a patch release because it corrects a bug where notifications were processed without user interaction and did not align with Android's implementation. This update eliminates the need for developers to handle platform-specific cases, ensuring consistency with Android.
+
+**Fixes:**
+
+- fix(ios): dont trigger `notificationReceived` on app reload (#333)
+- fix(ios): `forceShow` to display toast but trigger event until tapped (#332)
+
 ## 5.0.2
 
 **Fixes:**
 
-fix(android): add missing `import androidx.core.app.ActivityCompat` (#331)
+- fix(android): add missing `import androidx.core.app.ActivityCompat` (#331)
 
 ## 5.0.1
 
 **Fixes:**
 
-fix(ios): revert accidental change to category "`callback`" (#328)
-fix(ios): update reset flags placement in `notificationReceived` (#329)
-fix(ios): request new permissions based on ios config changes (#326)
-fix(android): prevent permission dialog appearing when already denied (#325)
-fix(ios): exclude configure if `FIRApp` is already configured (#321)
-fix(ios): reset flags & store message after processing notification received (#319)
-fix(ios): make sure `notificationMessage` is immutable (#317)
+- fix(ios): revert accidental change to category "`callback`" (#328)
+- fix(ios): update reset flags placement in `notificationReceived` (#329)
+- fix(ios): request new permissions based on ios config changes (#326)
+- fix(android): prevent permission dialog appearing when already denied (#325)
+- fix(ios): exclude configure if `FIRApp` is already configured (#321)
+- fix(ios): reset flags & store message after processing notification received (#319)
+- fix(ios): make sure `notificationMessage` is immutable (#317)
 
 **Others:**
 
-chore(*): typings - update comments & iOS `forceShow` option (#327)
-ci: replace lock app with lock-threads workflow
+- chore(*): typings - update comments & iOS `forceShow` option (#327)
+- ci: replace lock app with lock-threads workflow
 
 ## 5.0.0
 
