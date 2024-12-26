@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.5
+
+**Fixes:**
+
+- fix(ios): correctly set `foreground` flag when `forceShow` is enabled (#338)
+
 ## 5.0.4
 
 - Updated the plugin version in `plugin.xml`. (It was missed in the last three patches :D)
